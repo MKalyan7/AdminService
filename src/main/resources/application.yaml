@@ -14,3 +14,5 @@ spring:
     show-sql: true
   application:
     name: ADMIN-SERVICE
+  config:
+    import: optional:configserver:http://localhost:9296
