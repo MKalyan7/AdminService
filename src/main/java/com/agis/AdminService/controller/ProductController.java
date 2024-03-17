@@ -31,4 +31,6 @@ public class ProductController {
         ProductResponse productResponse = productService.getProductDetail(productId);
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
+
+
 }
