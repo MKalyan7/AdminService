@@ -1,6 +1,7 @@
 package com.agis.AdminService.service;
 
 import com.agis.AdminService.entity.Permission;
+import com.agis.AdminService.exception.PermissionServiceCustomException;
 import com.agis.AdminService.model.PermissionRequest;
 import com.agis.AdminService.model.PermissionResponse;
 import com.agis.AdminService.repository.PermissionRepository;
@@ -57,7 +58,9 @@ public class PermissionServiceImpl implements PermissionService{
 
     @Override
     public PermissionResponse getPermissionDetail(long permissionId) {
-        Permission permission = permissionRepository.getReferenceById(permissionId);
+        Permission permission = permissionRepository.findById(permissionId).orElseThrow(
+                () -> new PermissionServiceCustomException("Permission with given ID not found","PERMISSION_NOT_FOUND")
+        );
         PermissionResponse permissionResponse = modelMapper.map(permission,PermissionResponse.class);
         return permissionResponse;
     }
