@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,8 @@ public class PermissionServiceImpl implements PermissionService{
         Permission permission = Permission.builder().
             name(permissionRequest.getName())
                 .description(permissionRequest.getDescription()).build();
+        permission.setCreatedBy("ADMIN");
+        permission.setCreatedDate(Instant.now());
         permissionRepository.save(permission);
         log.info("New Permission got created and got saved in DB");
         return permission.getPermissionId();

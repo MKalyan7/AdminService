@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,8 @@ public class CompanyServiceImpl implements CompanyService{
                 .companyStatus(companyRequest.getCompanyStatus())
                 .address(addressList)
                 .build();
+        company.setCreatedBy("ADMIN");
+        company.setCreatedDate(Instant.now());
 
         for (AddressRequest addressRequest:addressRequestList) {
            Address address = Address.builder()

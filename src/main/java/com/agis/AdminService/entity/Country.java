@@ -8,19 +8,24 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "country")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product extends AuditDetails {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long productId;
-    private String productName;
-    private String productCode;
-    private Boolean productStatus;
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-    List<Country> countries;
+    private long countryId;
+    private String countryCode;
+    private String countryName;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
+    List<State> states;
+
 }

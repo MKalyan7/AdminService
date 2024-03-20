@@ -7,20 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Permission")
+@Table(name = "state")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Permission extends AuditDetails{
+public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long permissionId;
-
-    private String name;
-
-    private String description;
+    private long stateId;
+    private String stateCode;
+    private String stateName;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
 
 
 }

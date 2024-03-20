@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Company {
+public class Company extends AuditDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
